@@ -1,26 +1,50 @@
 import avatar from "../images/kusto.jpg";
 
 function Main() {
+  function handleEditAvatarClick() {
+    document.querySelector(".popup_avatar").classList.add("popup_opened");
+  }
+
+  function handleEditProfileClick() {
+    document.querySelector(".popup_profile").classList.add("popup_opened");
+  }
+
+  function handleAddPlaceClick() {
+    document.querySelector(".popup_card").classList.add("popup_opened");
+  }
+
   return (
     <main>
-      <section class="profile page__profile">
-        <div class="profile__container">
-          <div class="profile__avatar">
-            <img class="profile__image" src={avatar} alt="Аватар" />
-            <button class="profile__avatar-button" type="button"></button>
+      <section className="profile page__profile">
+        <div className="profile__container">
+          <div className="profile__avatar">
+            <img className="profile__image" src={avatar} alt="Аватар" />
+            <button
+              className="profile__avatar-button"
+              type="button"
+              onClick={handleEditAvatarClick}
+            ></button>
           </div>
-          <div class="profile__info">
-            <div class="profile__wrapper">
-              <h1 class="profile__title"></h1>
-              <button class="profile__edit-button" type="button"></button>
+          <div className="profile__info">
+            <div className="profile__wrapper">
+              <h1 className="profile__title"></h1>
+              <button
+                className="profile__edit-button"
+                type="button"
+                onClick={handleEditProfileClick}
+              ></button>
             </div>
-            <p class="profile__subtitle"></p>
+            <p className="profile__subtitle"></p>
           </div>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button
+          className="profile__add-button"
+          type="button"
+          onClick={handleAddPlaceClick}
+        ></button>
       </section>
-      <section class="cards page__cards">
-        <ul class="cards__list"></ul>
+      <section className="cards page__cards">
+        <ul className="cards__list"></ul>
       </section>
     </main>
   );
