@@ -1,4 +1,5 @@
-import './App.css'
+import logo from './images/logo.svg'
+import avatar from './images/kusto.jpg'
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
         <header class='header'>
           <img
             class='header__logo'
-            src="<%=require('./images/logo.svg')%>"
+            src={logo}
             alt='Логотип'
           />
         </header>
@@ -17,7 +18,7 @@ function App() {
               <div class='profile__avatar'>
                 <img
                   class='profile__image'
-                  src="<%=require('./images/kusto.jpg')%>"
+                  src={avatar}
                   alt='Аватар'
                 />
                 <button class='profile__avatar-button' type='button'></button>
