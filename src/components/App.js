@@ -12,7 +12,6 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
 
-  console.log(isEditProfilePopupOpen);
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -23,6 +22,12 @@ function App() {
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
   }
 
   return (
@@ -40,6 +45,7 @@ function App() {
           name="profile"
           buttonTitle="Сохранить"
           isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
         >
           <input
             className="popup__input popup__input_field_name"
@@ -77,6 +83,7 @@ function App() {
           name="card"
           buttonTitle="Создать"
           isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
         >
           <input
             className="popup__input popup__input_field_title"
@@ -108,12 +115,18 @@ function App() {
           ></span>
         </PopupWithForm>
         <ImagePopup />
-        <PopupWithForm title="Вы уверены?" name="delete" buttonTitle="Да" />
+        <PopupWithForm
+          title="Вы уверены?"
+          name="delete"
+          buttonTitle="Да"
+          onClose={closeAllPopups}
+        />
         <PopupWithForm
           title="Обновить аватар"
           name="avatar"
           buttonTitle="Соxранить"
           isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
         >
           <input
             className="popup__input popup__input_field_avatar"
