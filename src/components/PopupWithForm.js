@@ -1,6 +1,8 @@
-function PopupWithForm({ title, name, buttonTitle, children }) {
+import React from "react";
+
+function PopupWithForm({ title, name, buttonTitle, isOpen, children }) {
   return (
-    <section className={`popup popup_${name}`}>
+    <section className={`popup popup_${name} ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container">
         <button className="popup__close" type="button"></button>
         <h2 className={`popup__title popup__title_popup_${name}`}>{title}</h2>

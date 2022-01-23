@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -5,16 +6,40 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
+
+  console.log(isEditProfilePopupOpen);
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true);
+  }
+
   return (
     <>
       <div className="page__container">
         <Header />
-        <Main />
+        <Main
+          handleAddPlaceClick={handleAddPlaceClick}
+          handleEditAvatarClick={handleEditAvatarClick}
+          handleEditProfileClick={handleEditProfileClick}
+        />
         <Footer />
         <PopupWithForm
           title="Редактировать профиль"
           name="profile"
           buttonTitle="Сохранить"
+          isOpen={isEditProfilePopupOpen}
         >
           <input
             className="popup__input popup__input_field_name"
@@ -47,7 +72,12 @@ function App() {
             className="popup__error popup__error_field_text"
           ></span>
         </PopupWithForm>
-        <PopupWithForm title="Новое место" name="card" buttonTitle="Создать">
+        <PopupWithForm
+          title="Новое место"
+          name="card"
+          buttonTitle="Создать"
+          isOpen={isAddPlacePopupOpen}
+        >
           <input
             className="popup__input popup__input_field_title"
             name="title"
@@ -83,6 +113,7 @@ function App() {
           title="Обновить аватар"
           name="avatar"
           buttonTitle="Соxранить"
+          isOpen={isEditAvatarPopupOpen}
         >
           <input
             className="popup__input popup__input_field_avatar"
