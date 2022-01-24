@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "./Card";
 import { api } from "../utils/api";
 
 function Main({
@@ -9,6 +10,14 @@ function Main({
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
   const [userAvatar, setUserAvatar] = React.useState("");
+  const [cards, setCards] = React.useState([]);
+
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => console.log(err));
+  }, []);
 
   React.useEffect(() => {
     api
@@ -52,7 +61,11 @@ function Main({
         ></button>
       </section>
       <section className="cards page__cards">
-        <ul className="cards__list"></ul>
+        <ul className="cards__list">
+          {cards.map(({ _id, ...props }) => (
+            <Card key={_id} {...props} />
+          ))}
+        </ul>
       </section>
     </main>
   );
