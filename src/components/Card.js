@@ -1,7 +1,16 @@
-function Card({ name, link, likes }) {
+function Card({ name, link, likes, onCardClick }) {
+  function handleClick() {
+    onCardClick({ name, link });
+  }
+
   return (
     <li className="card">
-      <img className="card__image" alt={name} src={link} />
+      <img
+        className="card__image"
+        alt={name}
+        src={link}
+        onClick={handleClick}
+      />
       <div className="card__description">
         <h2 className="card__text">{name}</h2>
         <div className="card__like-container">

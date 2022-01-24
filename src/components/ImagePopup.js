@@ -1,10 +1,14 @@
-function ImagePopup() {
+function ImagePopup({ name, link, onClose }) {
   return (
-    <section className="popup popup_photo">
+    <section className={`popup popup_photo ${name ? "popup_opened" : ""}`}>
       <figure className="popup__wrapper">
-        <button className="popup__close" type="button"></button>
-        <img className="popup__image" alt="" />
-        <figcaption className="popup__description"></figcaption>
+        <button
+          className="popup__close"
+          type="button"
+          onClick={onClose}
+        ></button>
+        <img className="popup__image" alt={name} src={`${link}`} />
+        <figcaption className="popup__description">{name}</figcaption>
       </figure>
     </section>
   );

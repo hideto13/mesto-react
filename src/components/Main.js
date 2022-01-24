@@ -6,6 +6,7 @@ function Main({
   handleAddPlaceClick,
   handleEditAvatarClick,
   handleEditProfileClick,
+  onCardClick,
 }) {
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
@@ -63,7 +64,7 @@ function Main({
       <section className="cards page__cards">
         <ul className="cards__list">
           {cards.map(({ _id, ...props }) => (
-            <Card key={_id} {...props} />
+            <Card key={_id} onCardClick={onCardClick} {...props} />
           ))}
         </ul>
       </section>

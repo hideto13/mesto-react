@@ -11,6 +11,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState("");
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -24,10 +25,15 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard("");
   }
 
   return (
@@ -37,6 +43,7 @@ function App() {
         handleAddPlaceClick={handleAddPlaceClick}
         handleEditAvatarClick={handleEditAvatarClick}
         handleEditProfileClick={handleEditProfileClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
       <PopupWithForm
@@ -113,7 +120,11 @@ function App() {
           className="popup__error popup__error_field_link"
         ></span>
       </PopupWithForm>
-      <ImagePopup />
+      <ImagePopup
+        name={selectedCard.name}
+        link={selectedCard.link}
+        onClose={closeAllPopups}
+      />
       <PopupWithForm
         title="Вы уверены?"
         name="delete"
