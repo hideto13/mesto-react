@@ -1,6 +1,6 @@
 function ImagePopup({ name, link, onClose }) {
   return (
-    <section className={`popup popup_photo ${name ? "popup_opened" : ""}`}>
+    <section className={`popup popup_photo ${link ? "popup_opened" : ""}`}>
       <figure className="popup__wrapper">
         <button
           className="popup__close"
