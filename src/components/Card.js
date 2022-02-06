@@ -1,7 +1,16 @@
 import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card({ name, link, likes, owner, _id, onCardClick, onCardLike }) {
+function Card({
+  name,
+  link,
+  likes,
+  owner,
+  _id,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+}) {
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = owner._id === currentUser._id;
   const isLiked = likes.some((i) => i._id === currentUser._id);
@@ -19,6 +28,10 @@ function Card({ name, link, likes, owner, _id, onCardClick, onCardLike }) {
 
   function handleLikeClick() {
     onCardLike({ _id, likes });
+  }
+
+  function handleDeleteClick() {
+    onCardDelete({ _id });
   }
 
   return (
@@ -40,7 +53,11 @@ function Card({ name, link, likes, owner, _id, onCardClick, onCardLike }) {
           <p className="card__like-text">{likes.length}</p>
         </div>
       </div>
-      <button className={cardDeleteButtonClassName} type="button"></button>
+      <button
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
+        type="button"
+      ></button>
     </li>
   );
 }

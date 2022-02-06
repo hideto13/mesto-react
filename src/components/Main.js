@@ -20,6 +20,12 @@ function Main({
     });
   }
 
+  function handleCardDelete(card) {
+    api.deleteCard(card._id).then(() => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
+
   React.useEffect(() => {
     api
       .getInitialCards()
@@ -70,6 +76,7 @@ function Main({
                   key={_id}
                   onCardClick={onCardClick}
                   onCardLike={handleCardLike}
+                  onCardDelete={handleCardDelete}
                   _id={_id}
                   {...props}
                 />
