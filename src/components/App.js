@@ -4,6 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import ImagePopup from "./ImagePopup";
 import { api } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -122,27 +123,10 @@ function App() {
           buttonTitle="Да"
           onClose={closeAllPopups}
         />
-        <PopupWithForm
-          title="Обновить аватар"
-          name="avatar"
-          buttonTitle="Соxранить"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            className="popup__input popup__input_field_avatar"
-            name="avatar"
-            placeholder="Ссылка на аватар"
-            required
-            type="url"
-            id="avatar"
-            autoComplete="off"
-          />
-          <span
-            id="avatar-error"
-            className="popup__error popup__error_field_avatar"
-          ></span>
-        </PopupWithForm>
+        />
       </div>
     </CurrentUserContext.Provider>
   );
