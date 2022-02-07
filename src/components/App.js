@@ -43,6 +43,13 @@ function App() {
     setSelectedCard({ name: "", link: "" });
   }
 
+  function handleUpdateUser(user) {
+    api.setUserInfo(user.name, user.about).then((user) => {
+      setCurrentUser(user);
+      closeAllPopups();
+    });
+  }
+
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -66,6 +73,7 @@ function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
         <PopupWithForm
           title="Новое место"
