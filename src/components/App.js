@@ -60,6 +60,13 @@ function App() {
     });
   }
 
+  function handleAddPlaceSubmit(card) {
+    api.addCard(card.title, card.link).then((newCard) => {
+      setCards([newCard, ...cards]);
+      closeAllPopups();
+    });
+  }
+
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
@@ -109,7 +116,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+        />
         <ImagePopup
           name={selectedCard.name}
           link={selectedCard.link}
